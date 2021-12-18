@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# Shopii
 
 Steps to run this project:
 
