@@ -79,7 +79,7 @@ const logout = async (req: Request, res: Response) => {
         sameSite: "strict",
         expires: new Date(0),
         path: "/"
-    }))
+    })) 
 
     return res.status(200).json({ logout: "true" })
 }
