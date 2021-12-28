@@ -1,9 +1,10 @@
 import { IsEmail, Length } from "class-validator";
-import {Entity as TOEntity, Column, Index, BeforeInsert} from "typeorm";
+import {Entity as TOEntity, Column, Index, BeforeInsert, OneToMany} from "typeorm";
 import bcrypt from "bcrypt"
 import { Exclude } from "class-transformer"
 
 import Entity from "./Entity";
+import Product from "./Product";
 
 @TOEntity("users")
 export default class User extends Entity {
@@ -31,6 +32,10 @@ export default class User extends Entity {
     @Index()
     @Column({ nullable: true })
     address: string;
+
+    @OneToMany(() => Product, product => product.user)
+    products: Product[];
+
 
     @BeforeInsert()
     async hashPassword(){

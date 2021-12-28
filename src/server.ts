@@ -9,6 +9,8 @@ import cors from 'cors'
 dotenv.config()
 
 import authRoutes from "./routes/auth"
+import productRoutes from "./routes/products"
+
 import trim from "./middleware/trim"
 
 const app = express()
@@ -22,6 +24,7 @@ app.use(cookieParser())
 
 app.get("/", (req, res) => res.send("Hello World!"))
 app.use("/api/auth", authRoutes)
+app.use("/api/products", productRoutes)
 
 app.listen(PORT, async () => {
     console.log(`Server running at https://localhost:${PORT}`)
