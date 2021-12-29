@@ -29,13 +29,15 @@ export default class Product extends Entity {
     @Column()
     price: string
 
-    //for product image file
-    @Column({
-        type: "bytea",
-        nullable: true // --> setting this true for now
-    })
-    data: Uint8Array;
+    // //for product image file
+    // @Column({
+    //     type: "bytea",
+    //     nullable: true // --> setting this true for now
+    // })
+    // data: Uint8Array;
 
+    @Column({nullable: true})
+    imageUrn: string
 
     @ManyToOne(() => User, user => user.products)
     @JoinColumn({ name: "username", referencedColumnName: "username" })
