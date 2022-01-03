@@ -1,15 +1,20 @@
 import Head from "next/dist/shared/lib/head"
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {useRouter} from 'next/router'
+import { useContext } from "react";
+import AppContext from "../AppContext";
 
 
 const Loginpage = () => {
 
+    const value = useContext(AppContext);
+    let {isAuthenticated} = value.state;
+    let {user} = value.state;
+    let {setAuthenticated, setUser} = value;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    let name = '';
-    let authenticated = false;
+    
 
     const router = useRouter();
 
@@ -22,15 +27,14 @@ const Loginpage = () => {
                 password: password,
 
             }).then((res) => {
-                console.log(res);
+                console.log(res);                
                 if (res.status === Number(200)) {
-                    authenticated = true;
-                    name = username;
-                    console.log(authenticated)
-                    console.log(name);
+                    setAuthenticated(true)
+                    setUser(username)
+                    console.log(isAuthenticated)
+                    console.log(user);
                     console.log('Login success');
                     router.push('/')
-                    
                 }
             })
             .catch((error) => {
@@ -45,8 +49,8 @@ const Loginpage = () => {
                 }
             });
 
-            
-
+    
+    
     
         setUsername('');
         setPassword('');

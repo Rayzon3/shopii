@@ -2,13 +2,15 @@ import Head from 'next/head'
 import NavBar from '../components/navBar.jsx'
 
 export default function Home() {
+
+  
   return (
     <div className="flex flex-col min-h-screen py-2 bg-midNight">
       <Head>
         <title>[Site Name]</title>
         <link rel="icon" href="/tree.ico" />
       </Head>
-      <NavBar/>
+      <NavBar />
       <main className="flex flex-col items-center justify-center flex-1 w-full px-10 text-center text-white">
         <h1 className="text-6xl font-bold">
           Welcome to{' '}
