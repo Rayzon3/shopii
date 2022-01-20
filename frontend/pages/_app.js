@@ -1,27 +1,17 @@
 import 'tailwindcss/tailwind.css'
 import AppContext from '../AppContext'
-import {useState } from 'react';
+import { useState } from 'react';
+import store from '../redux/store';
+import { Provider } from 'react-redux'
 
 
 
 function MyApp({ Component, pageProps }) {
-
-  const [isAuthenticated, setAuthenticated] = useState(false);
-  const [user, setUser] = useState('');
   return (
-  <AppContext.Provider
-  value={{
-    state:{
-      isAuthenticated : isAuthenticated,
-      user : user,
-    },
-    setAuthenticated : setAuthenticated,
-    setUser : setUser,
-  }}
-  >
-    <Component {...pageProps} />
-  </AppContext.Provider>
-  
+    <Provider store={store}>
+        <Component {...pageProps} />
+    </Provider>
+
   );
 }
 

@@ -1,0 +1,65 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\shivam\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add redux
+
+PATH: 
+  C:\Program Files\Python39\Scripts\;C:\Program Files\Python39\;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python39\Scripts\;C:\Python39\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\shivam\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\shivam\AppData\Local\Microsoft\WindowsApps;C:\Users\shivam\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\Users\shivam\Desktop\javascript\node_modules\nodemon;C:\Users\shivam\Desktop\javascript\node_modules\nodemon\bin;C:\Program Files\Java\jdk-15.0.1\bin;C:\Program Files\MongoDB\Server\4.4\bin;C:\Program Files\R\R-4.0.3\bin;C:\Users\shivam\AppData\Roaming\npm;C:\Users\shivam\Downloads\platform-tools_r31.0.3-windows\platform-tools;C:\Users\shivam\AppData\Local\GitHubDesktop\bin;C:\Users\shivam\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  14.17.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EBUSY: resource busy or locked, copyfile 'C:\Users\shivam\AppData\Local\Yarn\Cache\v6\npm-typescript-4.5.4-a17d3a0263bf5c8723b9c52f43c5084edf13c2e8-integrity\node_modules\typescript\lib\lib.es2017.intl.d.ts' -> 'C:\Users\shivam\Desktop\ewaste\node_modules\typescript\lib\lib.es2017.intl.d.ts'
+
+npm manifest: 
+  {
+     "name": "new-typeorm-project",
+     "version": "0.0.1",
+     "description": "Awesome project developed with TypeORM.",
+     "devDependencies": {
+        "@types/bcrypt": "^5.0.0",
+        "@types/cookie": "^0.4.1",
+        "@types/cookie-parser": "^1.4.2",
+        "@types/cors": "^2.8.12",
+        "@types/express": "^4.17.13",
+        "@types/jsonwebtoken": "^8.5.6",
+        "@types/morgan": "^1.9.3",
+        "@types/multer": "^1.4.7",
+        "@types/node": "^17.0.0",
+        "morgan": "^1.10.0",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.4"
+     },
+     "dependencies": {
+        "bcrypt": "^5.0.1",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.13.2",
+        "cookie": "^0.4.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "jsonwebtoken": "^8.5.1",
+        "multer": "^1.4.4",
+        "nodemon": "^2.0.15",
+        "pg": "^8.4.0",
+        "reflect-metadata": "^0.1.10",
+        "typeorm": "0.2.41"
+     },
+     "scripts": {
+        "start": "ts-node src/server.ts",
+        "dev": "nodemon --exec ts-node src/server.ts",
+        "typeorm": "ts-node ./node_modules/typeorm/cli.js"
+     }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

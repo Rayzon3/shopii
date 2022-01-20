@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from "next/dist/shared/lib/head"
 import { useState } from 'react'
-import NavBar from './navBar'
+import NavBar from '../components/navBar.jsx'
 import axios from 'axios'
 const sell = () => {
 

@@ -1,26 +1,27 @@
 import Head from "next/dist/shared/lib/head"
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 import { useContext } from "react";
 import AppContext from "../AppContext";
+import { useDispatch } from "react-redux";
+import { login, loginSuccess } from "../redux/userRedux";
 
 
 const Loginpage = () => {
 
-    const value = useContext(AppContext);
-    let {isAuthenticated} = value.state;
-    let {user} = value.state;
-    let {setAuthenticated, setUser} = value;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
+    const dispatch = useDispatch();
 
     const router = useRouter();
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
 
+        
+    
         axios.post('http://localhost:5000/api/auth/login/',
             {
                 username: username,
@@ -28,14 +29,11 @@ const Loginpage = () => {
 
             }).then((res) => {
                 console.log(res);                
-                if (res.status === Number(200)) {
-                    setAuthenticated(true)
-                    setUser(username)
-                    console.log(isAuthenticated)
-                    console.log(user);
-                    console.log('Login success');
-                    router.push('/')
-                }
+                console.log(res.data.username)
+                console.log('Login success');
+                dispatch(loginSuccess(res.data.username))
+                console.log()
+                router.push('/')
             })
             .catch((error) => {
                 if (error.response) {
@@ -49,13 +47,13 @@ const Loginpage = () => {
                 }
             });
 
-    
-    
-    
+
+
+
         setUsername('');
         setPassword('');
 
-        
+
 
     }
 
@@ -71,13 +69,13 @@ const Loginpage = () => {
                     <h1 className="text-green text-center text-4xl font-bold">Login</h1>
                     <div className="flex flex-col p-3 mt-3">
                         <div className="mb-1">
-                            <label for="username" className="text-white text-2xl" >Username:</label>
+                            <label htmlFor="username" className="text-white text-2xl" >Username:</label>
                         </div>
                         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="  w-full py-1 px-3 border focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent rounded" placeholder="Username" id="username" name="username" ></input>
                     </div>
                     <div className="p-3">
                         <div className="mb-1">
-                            <label for="pass" className="text-white text-2xl" >Password:</label>
+                            <label htmlFor="pass" className="text-white text-2xl" >Password:</label>
                         </div>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full py-1 px-3 border focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent rounded" id="pass" placeholder="Password" name="pass"></input>
 
