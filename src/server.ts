@@ -14,7 +14,7 @@ import productRoutes from "./routes/products"
 import trim from "./middleware/trim"
 
 const app = express()
-const PORT = process.env.PORT
+const PORT = 5000
 
 app.use(cors())
 app.use(express.json())

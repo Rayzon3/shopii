@@ -10,10 +10,6 @@ import { login, loginSuccess } from "../redux/userRedux";
 
 const Loginpage = () => {
 
-    // const value = useContext(AppContext);
-    // let {isAuthenticated} = value.state;
-    // let {user} = value.state;
-    // let {setAuthenticated, setUser} = value;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -21,9 +17,6 @@ const Loginpage = () => {
     const router = useRouter();
 
     const handleSubmit = (e) => {
-
-        console.log('name ', username);
-        console.log('password ', password);
 
         e.preventDefault();
 
@@ -36,12 +29,11 @@ const Loginpage = () => {
 
             }).then((res) => {
                 console.log(res);                
-                if (res.status === Number(200)) {
-                    setAuthenticated(true)
-                    console.log('Login success');
-                    dispatch(loginSuccess({}))
-                    router.push('/')
-                }
+                console.log(res.data.username)
+                console.log('Login success');
+                dispatch(loginSuccess(res.data.username))
+                console.log()
+                router.push('/')
             })
             .catch((error) => {
                 if (error.response) {

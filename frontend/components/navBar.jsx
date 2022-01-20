@@ -2,14 +2,18 @@ import { Disclosure } from '@headlessui/react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { logout } from '../redux/userRedux';
+import { useEffect } from 'react'
 
 export default function NavBar() {
+
   const user = useSelector((state) => state.user.user);
+
+  console.log(user);
   const dispatch = useDispatch();
-  // const handlelogout = () => {
-  //   dispatch(logout(null));
-  //   console.log(user);
-  // }
+  const handlelogout = () => {
+    dispatch(logout(null));
+    console.log(user);
+  }
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -28,12 +32,12 @@ export default function NavBar() {
                 {
                   user ?
                     <>
-                      <h2 className="text-3xl text-white">{user.username}</h2>
+                      <h2 className="text-3xl text-white">{user}</h2>
                       <button className="px-3 py-1 rounded bg-green transform motion-safe:hover:scale-110 ..." onSubmit={handlelogout} >Logout</button>
                     </>
                     :
                     <>
-                      <a href="/login"><button className="px-3 py-1 rounded bg-green transform motion-safe:hover:scale-110 ...">LogIn</button></a>
+                      <a href="/login"><button className="px-3 py-1 rounded bg-green transform motion-safe:hover:scale-110 ...">Log In</button></a>
                       <a href="/signup"><button className="px-3 py-1 rounded bg-green transform motion-safe:hover:scale-110 ...">Sign Up</button></a>
                     </>
                 }
