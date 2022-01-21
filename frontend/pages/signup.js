@@ -1,4 +1,3 @@
-import Head from "next/dist/shared/lib/head"
 import axios from 'axios'
 import { useState } from 'react'
 import {useRouter} from 'next/router'
@@ -51,10 +50,7 @@ const signup = () => {
 
     return (
         <div className="min-h-screen  mx-auto py-2 bg-midNight">
-            <Head >
-                <title>[Site Name]</title>
-                <link rel="icon" href="/tree.ico" />
-            </Head>
+           
             <div className="w-1/3 mt-32 mx-auto border p-6 rounded-xl   ">
                 <form onSubmit = {(e)=>handleSubmit(e)}>
                     <h1 className="text-green text-center text-4xl font-bold">Signup</h1>
