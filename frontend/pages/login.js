@@ -19,9 +19,9 @@ const Loginpage = () => {
     const handleSubmit = (e) => {
 
         e.preventDefault();
+        // dispatch(loginSuccess(null))
+        // router.push('/')
 
-        
-    
         axios.post('http://localhost:5000/api/auth/login/',
             {
                 username: username,

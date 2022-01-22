@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import NavBar from '../components/navBar.jsx'
 import Main from '../components/Home.jsx'
 
+
 export default function Home() {
 
   
