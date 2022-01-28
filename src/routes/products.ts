@@ -95,7 +95,7 @@ const uploadProductImage = async (req: Request, res: Response) => {
 };
 
 const router = Router();
-router.post("/", auth, createProduct);
+router.post("/", createProduct);
 router.post(
   "/:identifier/:slug/image",
   auth,

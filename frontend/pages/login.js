@@ -2,8 +2,6 @@ import Head from "next/dist/shared/lib/head"
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useContext } from "react";
-import AppContext from "../AppContext";
 import { useDispatch } from "react-redux";
 import { login, loginSuccess } from "../redux/userRedux";
 
@@ -29,11 +27,16 @@ const Loginpage = () => {
 
             }).then((res) => {
                 console.log(res);                
-                console.log(res.data.username)
+                console.log(res.data.user.username)
                 console.log('Login success');
-                dispatch(loginSuccess(res.data.username))
+                dispatch(loginSuccess(res.data.user.username))
                 console.log()
-                localStorage.setItem('token', res.data.username)
+                localStorage.setItem('token', res.data.token)
+                setTimeout(()=>{
+                    localStorage.removeItem('token')
+                    console.log('token deleted successfully')
+                    window.location.reload(false);
+                }, 3600000)
                 router.push('/')
             })
             .catch((error) => {

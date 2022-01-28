@@ -14,27 +14,35 @@ export default function NavBar() {
   const router  = useRouter();
   const dispatch = useDispatch();
   const [logout1, setLogout1] = React.useState(false)
+  const token  =  localStorage.getItem('token');
 
-  
-
-    useEffect (()=>{
-      console.log(logout1);
-      if(logout1) {
-        dispatch(logout());
-        axios.get('http://localhost:5000/api/auth/logout/')
-        .then(res=>{
-          console.log(res)
+  const handleLogout = () =>{
+    console.log('logout')
+    dispatch(logout());
+    localStorage.removeItem('token');
+    window.location.reload(false);
+  }
+  useEffect(() => {
+    console.log('Navbar changed')
+  }, [token])
+    // useEffect (()=>{
+    //   console.log(logout1);
+    //   if(logout1) {
+    //     dispatch(logout());
+    //     axios.get('http://localhost:5000/api/auth/logout/')
+    //     .then(res=>{
+    //       console.log(res)
           
       
-      router.push('/');
-        })
-        .catch((error) => {
-          if( error.response ){
-            console.log(error.response.data);
-           } // => the response payload
-        })
-      }
-    },[logout1]);
+    //   router.push('/');
+    //     })
+    //     .catch((error) => {
+    //       if( error.response ){
+    //         console.log(error.response.data);
+    //        } // => the response payload
+    //     })
+    //   }
+    // },[logout1]);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -51,10 +59,10 @@ export default function NavBar() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 space-x-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {
-                  user ?
+                  token ?
                     <>
                       <h2 className="text-3xl text-white">{user}</h2>
-                      <button type='button' className="px-3 py-1 rounded bg-green transform motion-safe:hover:scale-110 ..." onClick={(e)=>setLogout1(true)} >Logout</button>
+                      <button type='button' className="px-3 py-1 rounded bg-green transform motion-safe:hover:scale-110 ..." onClick={(e)=>handleLogout()} >Logout</button>
                     </>
                     :
                     <>

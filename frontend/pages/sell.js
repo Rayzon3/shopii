@@ -16,21 +16,25 @@ const sell = () => {
 
   const handleSubmit = (e) => {
       e.preventDefault();
-
-      
-      axios.post('http://localhost:5000/api/products/',
-      {
-          title: title,
-          description : desc,
-          price : price,
-          headers : headers,
-          
-      }).then(res =>(console.log(res)))
-      .catch((error) => {
-          if( error.response ){
-              console.log(error.response.data); // => the response payload 
-          }
-      });
+      const token =localStorage.getItem('token');
+      if(token){
+          axios.post('http://localhost:5000/api/products/',
+          {
+              title: title,
+              description : desc,
+              price : price,
+              headers : headers,
+              
+          }).then(res =>(console.log(res)))
+          .catch((error) => {
+              if( error.response ){
+                  console.log(error.response.data); // => the response payload 
+              }
+          });
+      }
+      else{
+          console.log('Unauthenticated');
+      }
       
 
       setTitle('');

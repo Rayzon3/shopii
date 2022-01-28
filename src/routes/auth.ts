@@ -66,7 +66,7 @@ const login = async (req: Request, res: Response) => {
             path: "/"
         }))
 
-        return res.json(user)
+        return res.json({user:user, token: token})
     }catch(e){
         console.log(e)
     }
@@ -91,7 +91,7 @@ const me = (req: Request, res: Response) => {
 const router = Router()
 router.post("/register", register)
 router.post("/login", login)
-router.get("/logout", logout)
+router.get("/logout",auth, logout)
 router.get("/me", auth, me)
 
 export default router
