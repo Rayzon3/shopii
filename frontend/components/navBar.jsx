@@ -1,21 +1,40 @@
+import React from 'react';
 import { Disclosure } from '@headlessui/react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { logout } from '../redux/userRedux';
+import { useRouter } from 'next/router'
+import {useEffect} from 'react'
+import axios from 'axios';
 
 
 export default function NavBar() {
 
   const user = useSelector((state) => state.user);
-
-
+  const router  = useRouter();
   const dispatch = useDispatch();
+  const [logout1, setLogout1] = React.useState(false)
 
-  const handlelogout = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-    console.log('logout',user);
-  }
+  
+
+    useEffect (()=>{
+      console.log(logout1);
+      if(logout1) {
+        dispatch(logout());
+        axios.get('http://localhost:5000/api/auth/logout/')
+        .then(res=>{
+          console.log(res)
+          
+      
+      router.push('/');
+        })
+        .catch((error) => {
+          if( error.response ){
+            console.log(error.response.data);
+           } // => the response payload
+        })
+      }
+    },[logout1]);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -35,7 +54,7 @@ export default function NavBar() {
                   user ?
                     <>
                       <h2 className="text-3xl text-white">{user}</h2>
-                      <button className="px-3 py-1 rounded bg-green transform motion-safe:hover:scale-110 ..." onSubmit={(e)=>handlelogout(e)} >Logout</button>
+                      <button type='button' className="px-3 py-1 rounded bg-green transform motion-safe:hover:scale-110 ..." onClick={(e)=>setLogout1(true)} >Logout</button>
                     </>
                     :
                     <>

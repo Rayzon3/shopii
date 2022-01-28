@@ -21,3 +21,5 @@ function MyApp({ Component, pageProps }) {
 export default MyApp
 
 // C:\Program Files\PostgreSQL\14\bin>.\psql.exe -d postgres -U postgres
+
+//http://localhost:5000/api/products/{indentifier}/{slug}/image

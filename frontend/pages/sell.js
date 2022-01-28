@@ -13,19 +13,16 @@ const sell = () => {
   const [title, setTitle] = useState('');
   const [desc, setDesc]= useState('');
   const [price, setPrice] = useState('');
-  const[image, setImage] = useState('');
 
   const handleSubmit = (e) => {
       e.preventDefault();
 
-      console.log(image);
       
-      axios.post('http://127.0.0.1:8000/product/product/',
+      axios.post('http://localhost:5000/api/products/',
       {
-          name: title,
-          desc : desc,
+          title: title,
+          description : desc,
           price : price,
-          image : image,
           headers : headers,
           
       }).then(res =>(console.log(res)))
@@ -38,7 +35,6 @@ const sell = () => {
 
       setTitle('');
       setDesc('');
-      setImage('');
       setPrice('');
 
     
@@ -50,7 +46,7 @@ const sell = () => {
         <link rel="icon" href="/tree.ico" />
       </Head>
       <NavBar/>
-      <div className="w-1/2 mt-20 mb-20 mx-auto border p-6 rounded-xl border-green bg-white   ">
+      <div className="sm:w-1/2 mt-20 mb-20 mx-auto border p-6 rounded-xl border-green bg-white   ">
                 <form onSubmit = {(e)=>handleSubmit(e)}>
                     <h1 className="text-midNight text-center text-4xl font-bold">Enlist your product!</h1>
                     <div className="flex flex-col p-3 mt-3">
@@ -71,14 +67,9 @@ const sell = () => {
                     </div>
                     <input type="number" value={price} onChange={(e)=>setPrice(e.target.value)} className="w-full py-1 px-3 border focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent rounded" id="price" placeholder="Enter the price" name="price"></input>
                     </div>
-                    <div className="p-3">
-                    <div className="mb-1">
-                    <label for="img" className="text-midNight text-2xl" >Upload image of the product:</label>
-                    </div>
-                    <input type="file" value={image} onChange={(e)=>setImage(e.target.value)} accept="image/*" className="w-full py-1 px-3 mt-1 text-white" id="img" placeholder="Enter the price" name="img"></input>
-                    </div>
+                    
                     <div className="text-center m-2">
-                        <button type="submit" className="bg-green hover:bg-green-500 text-midNight font-bold py-2 px-4 rounded">I'm Done</button>
+                        <button type="submit" className="bg-green hover:bg-green-500 text-midNight font-bold py-2 px-4 rounded">Proceed</button>
                     </div>
                     
                 </form>

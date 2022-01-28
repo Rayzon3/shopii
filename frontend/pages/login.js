@@ -33,6 +33,7 @@ const Loginpage = () => {
                 console.log('Login success');
                 dispatch(loginSuccess(res.data.username))
                 console.log()
+                localStorage.setItem('token', res.data.username)
                 router.push('/')
             })
             .catch((error) => {

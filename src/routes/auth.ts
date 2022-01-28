@@ -91,7 +91,7 @@ const me = (req: Request, res: Response) => {
 const router = Router()
 router.post("/register", register)
 router.post("/login", login)
-router.get("/logout", auth, logout)
+router.get("/logout", logout)
 router.get("/me", auth, me)
 
 export default router
