@@ -24,14 +24,6 @@ const image = () => {
     </div>
   ));
 
-  const uploadImage = async (event) => {
-    const file = event.target.file;
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("type", image);
-  };
-
   console.log(files);
   return (
     <div className="items-center w-full text-center min-h-screen mx-auto py-2 bg-midNight justify-center">
