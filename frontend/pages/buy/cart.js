@@ -3,25 +3,12 @@ import Head from "next/dist/shared/lib/head";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../../components/navBar";
+import { useSelector } from "react-redux";
 
 const cart = () => {
   const [items, setItems] = useState([]);
-  var price = 0;
-
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/product/cart/")
-      .then((res) => {
-        const items = res.data;
-        setItems(items);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-        } // => the response payload
-      });
-  }, []);
-  console.log(items);
+  const cart = useSelector((state) => state.cart);
+  let price = 0;
 
   return (
     <div className="flex flex-col min-h-screen py-2 bg-midNight">
@@ -30,8 +17,8 @@ const cart = () => {
         <link rel="icon" href="/tree.ico" />
       </Head>
       <NavBar />
-      <div className="flex flex-col flex-row items-center">
-        <div class="max-w-full rounded my-20 overflow-hidden shadow-lg bg-white rounded-lg flex-wrap p-4">
+      <div className="flex flex-col items-center">
+        <div class="max-w-full my-20 overflow-hidden shadow-lg bg-white rounded-lg flex-wrap p-4">
           <div class="mt-2 px-2">
             <h1 class="flex items-center justify-center font-bold text-midNight text-md lg:text-3xl">
               Cart
@@ -43,7 +30,7 @@ const cart = () => {
                 <h2 class="mb-4 font-bold md:text-xl text-heading ">
                   Items In Your Cart
                 </h2>
-                {items.map((item) => {
+                {cart.products.map((item) => {
                   price = price + item.price;
                   console.log(price);
                   return (
