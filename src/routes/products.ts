@@ -119,7 +119,7 @@ const uploadProductImage = async (req: Request, res: Response) => {
 };
 
 const router = Router();
-router.post("/", upload.single("file"), createProduct);
+router.post("/", auth, upload.single("file"), createProduct);
 // router.post(
 //   "/:identifier/:slug/image",
 //   auth,
