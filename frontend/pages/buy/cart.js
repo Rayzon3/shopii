@@ -3,9 +3,11 @@ import Head from "next/dist/shared/lib/head";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../../components/navBar";
+import { useSelector } from "react-redux";
 
 const cart = () => {
   const [items, setItems] = useState([]);
+  const cart = useSelector((state) => state.cart);
   var price = 0;
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const cart = () => {
                 <h2 class="mb-4 font-bold md:text-xl text-heading ">
                   Items In Your Cart
                 </h2>
-                {items.map((item) => {
+                {cart.products.map((item) => {
                   price = price + item.price;
                   console.log(price);
                   return (
