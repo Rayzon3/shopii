@@ -6,18 +6,42 @@ import path from "path";
 import auth from "../middleware/auth";
 import makeId from "../util/helpers";
 
+const imageStorage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, "./public/images");
+  },
+  filename: function (req, file, callback) {
+    const name = makeId(15);
+    callback(null, name + path.extname(file.originalname));
+  },
+});
+const fileFilter = (req, file, callback) => {
+  if (file.mimetype === "image/jpeg" || "image/png") {
+    callback(null, true);
+  } else {
+    callback(new Error("The image file must be jpeg or png !!"), false);
+  }
+};
+const upload = multer({
+  storage: imageStorage,
+  limits: {
+    fileSize: 1024 * 1024 * 5, //file size limit 5MB
+  },
+  fileFilter: fileFilter,
+});
+
 const createProduct = async (req: Request, res: Response) => {
   const { title, description, price } = req.body;
-
   const user = res.locals.user;
   if (title.trim() === "") {
     res.status(400).json({ title: "Product title must not be empty!!" });
   }
 
   try {
+    console.log(req.file);
     const product = new Product({ title, description, user, price });
     // upload.single("file");
-    // product.imageUrn = req.file.filename;
+    product.imageUrn = req.file.filename;
 
     await product.save();
 
@@ -56,23 +80,23 @@ const getProduct = async (req: Request, res: Response) => {
   }
 };
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: "public/images",
-    filename: (req, file, callback) => {
-      const name = makeId(15);
-      callback(null, name + path.extname(file.originalname)); // will look like this kdhsbvvwkjvhlw + .png
-    },
-  }),
-  fileFilter: (_, file: any, callback: FileFilterCallback) => {
-    console.log(file);
-    if (file.mimetype == "image/jpeg" || file.mimetype == "image/png") {
-      callback(null, true);
-    } else {
-      callback(new Error("Wrong file type!!"));
-    }
-  },
-});
+// const upload = multer({
+//   storage: multer.diskStorage({
+//     destination: "public/images",
+//     filename: (req, file, callback) => {
+//       const name = makeId(15);
+//       callback(null, name + path.extname(file.originalname)); // will look like this kdhsbvvwkjvhlw + .png
+//     },
+//   }),
+//   fileFilter: (_, file: any, callback: FileFilterCallback) => {
+//     console.log(file);
+//     if (file.mimetype == "image/jpeg" || file.mimetype == "image/png") {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Wrong file type!!"));
+//     }
+//   },
+// });
 
 const uploadProductImage = async (req: Request, res: Response) => {
   const { identifier, slug } = req.params;
@@ -95,13 +119,13 @@ const uploadProductImage = async (req: Request, res: Response) => {
 };
 
 const router = Router();
-router.post("/", createProduct);
-router.post(
-  "/:identifier/:slug/image",
-  auth,
-  upload.single("file"),
-  uploadProductImage
-);
+router.post("/", upload.single("file"), createProduct);
+// router.post(
+//   "/:identifier/:slug/image",
+//   auth,
+//   upload.single("file"),
+//   uploadProductImage
+// );
 router.get("/", getProducts);
 router.get("/:identifier/:slug", getProduct);
 
