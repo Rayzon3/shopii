@@ -1,11 +1,13 @@
-import 'tailwindcss/tailwind.css'
-import AppContext from '../AppContext'
-import { useState } from 'react';
-import store from '../redux/store';
-import { persistor } from '../redux/store'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
+import "tailwindcss/tailwind.css";
+import AppContext from "../AppContext";
+import { useState } from "react";
+import store from "../redux/store";
+import { persistor } from "../redux/store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import Axios from "axios";
 
+Axios.defaults.baseURL = "http://localhost:5000/api";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -14,11 +16,10 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </PersistGate>
     </Provider>
-
   );
 }
 
-export default MyApp
+export default MyApp;
 
 // C:\Program Files\PostgreSQL\14\bin>.\psql.exe -d postgres -U postgres
 

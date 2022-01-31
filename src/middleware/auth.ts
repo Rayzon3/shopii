@@ -20,6 +20,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     return next();
   } catch (e) {
     console.log(e);
-    return res.status(200).json({ error: e.message });
+    return res.status(400).json({ error: e.message });
   }
 };

@@ -1,0 +1,68 @@
+import Axios from 'axios'
+import Head from 'next/head'
+import Link from 'next/link'
+import { FormEvent, useState } from 'react'
+import InputGroup from '../components/InputGroup'
+import { useRouter } from 'next/router'
+
+export default function loginPage() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState<any>({})
+
+  const router = useRouter()
+
+  const submitForm = async (event: FormEvent) => {
+    event.preventDefault()
+
+    try {
+      const res = await Axios.post('/auth/login', {
+        username,
+        password,
+      })
+      router.push('/')
+      //   console.log(res.data)
+    } catch (err) {
+      //   console.log(err)
+      setErrors(err.response.data)
+    }
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center bg-midNight py-2">
+      <Head>
+        <title>Login</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <h1 className="mt-3 text-4xl font-bold text-green">Login</h1>
+      <form onSubmit={submitForm}>
+        <div className="mt-8 items-center justify-center">
+          <InputGroup
+            className="m-2"
+            type="username"
+            value={username}
+            setValue={setUsername}
+            placeholder="Username"
+            errors={errors.username}
+          />
+          <InputGroup
+            className="m-2"
+            type="password"
+            value={password}
+            setValue={setPassword}
+            placeholder="Password"
+            errors={errors.password}
+          />
+        </div>
+        <small className="text-green">
+          <Link href="/register">
+            <a className="ml-1 mt-1"> New user? Register!</a>
+          </Link>
+        </small>
+        <button className="mt-4 mb-4 w-full rounded-full bg-green py-2 text-sm font-bold text-midNight">
+          Login!
+        </button>
+      </form>
+    </div>
+  )
+}
