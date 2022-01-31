@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     backgroundColor: (theme) => ({
       midNight: '#243443',
+      midNightDarker: '#1d2a36',
       greenDarker: '#29dd9d',
       green: '#2DF6AE',
       white: '#FFFFFF',
@@ -13,6 +14,7 @@ module.exports = {
     }),
     textColor: (theme) => ({
       midNight: '#243443',
+      midNightDarker: '#1d2a36',
       green: '#2DF6AE',
       white: '#FFFFFF',
     }),

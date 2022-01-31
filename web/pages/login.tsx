@@ -5,12 +5,18 @@ import { FormEvent, useState } from 'react'
 import InputGroup from '../components/InputGroup'
 import { useRouter } from 'next/router'
 
+import { useAuthDispatch, useAuthState } from '../context/auth'
+
 export default function loginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState<any>({})
 
+  const dispatch = useAuthDispatch()
+  const { authenticated } = useAuthState()
+
   const router = useRouter()
+  if (authenticated) router.push('/')
 
   const submitForm = async (event: FormEvent) => {
     event.preventDefault()
@@ -20,6 +26,9 @@ export default function loginPage() {
         username,
         password,
       })
+
+      dispatch('LOGIN', res.data)
+
       router.push('/')
       //   console.log(res.data)
     } catch (err) {
