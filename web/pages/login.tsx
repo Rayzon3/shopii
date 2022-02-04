@@ -38,7 +38,7 @@ export default function loginPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-midNight py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-dark bg-[url('/authentication.svg')] bg-[length:600px_600px] bg-fixed bg-left-bottom bg-no-repeat py-2">
       <Head>
         <title>Login</title>
         <link rel="icon" href="/favicon.ico" />
@@ -63,12 +63,12 @@ export default function loginPage() {
             errors={errors.password}
           />
         </div>
-        <small className="text-green">
+        <small className="text-green hover:underline">
           <Link href="/register">
             <a className="ml-1 mt-1"> New user? Register!</a>
           </Link>
         </small>
-        <button className="mt-4 mb-4 w-full rounded-full bg-green py-2 text-sm font-bold text-midNight">
+        <button className="mt-4 mb-4 w-full rounded-full bg-green py-2 text-sm font-bold text-midNight hover:bg-greenDarker">
           Login!
         </button>
       </form>

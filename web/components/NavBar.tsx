@@ -19,7 +19,10 @@ export default function NavBar() {
   }
 
   return (
-    <Disclosure as="nav" className="bg-midNightDarker">
+    <Disclosure
+      as="nav"
+      className="bbackdrop-filter border-b border-gray-200 bg-dark bg-opacity-90 to-transparent backdrop-blur-lg"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

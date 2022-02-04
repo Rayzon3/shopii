@@ -11,7 +11,15 @@ module.exports = {
       white: '#FFFFFF',
       gray: '#808080',
       red: '#FF0000',
+      dark: '#141919',
     }),
+    backgroundSize: {
+      auto: 'auto',
+      cover: 'cover',
+      contain: 'contain',
+      '50%': '50%',
+      16: '4rem',
+    },
     textColor: (theme) => ({
       midNight: '#243443',
       midNightDarker: '#1d2a36',
@@ -25,6 +33,9 @@ module.exports = {
         20: '0.2',
         95: '0.95',
         100: '1',
+      },
+      fontFamily: {
+        noto: "'Noto Sans', sans-serif",
       },
     },
   },
