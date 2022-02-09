@@ -8,7 +8,7 @@ import makeId from "../util/helpers";
 
 const imageStorage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, "./public/images");
+    callback(null, "../../web/public");
   },
   filename: function (req, file, callback) {
     const name = makeId(15);
