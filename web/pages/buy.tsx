@@ -5,8 +5,6 @@ import Image from 'next/image'
 
 import image from '../../public/images/9btx63btWcuNzYE.png'
 
-console.log(image)
-
 const buy = () => {
   const [product, setProduct] = useState([])
   const [search, setSearch] = useState('')
@@ -61,8 +59,8 @@ const buy = () => {
         {product.map((prod) => (
           <div className="overflow-hidden rounded bg-white p-4 shadow-lg">
             <div className="bg-gray-200 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8 relative w-full overflow-hidden rounded-lg">
-              <img
-                src='{{ "public/images/" + prod.imageUrn }}'
+              <Image
+                src={`/${prod.imageUrn}`}
                 alt="product image"
                 className="h-full w-full object-cover object-center group-hover:opacity-75"
                 height={500}

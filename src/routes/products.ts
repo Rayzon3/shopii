@@ -6,9 +6,11 @@ import path from "path";
 import auth from "../middleware/auth";
 import makeId from "../util/helpers";
 
+// import image from "../../web/public"
+
 const imageStorage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, "../../web/public");
+    callback(null, "./web/public");
   },
   filename: function (req, file, callback) {
     const name = makeId(15);
