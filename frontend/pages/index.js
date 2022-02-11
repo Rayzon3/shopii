@@ -13,9 +13,7 @@ export default function Home() {
         <title>[Site Name]</title>
         <link rel="icon" href="/tree.ico" />
       </Head>
-  
      <Main/>
-
     </div>
   )
 }

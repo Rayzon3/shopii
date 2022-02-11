@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import styles from './index.module.css'
+
 
 export default function Home() {
   return (
@@ -13,6 +15,24 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Ubuntu+Mono&display=swap');
         </style>
       </Head>
+        <h1 className={styles.title}>E-Fritter</h1>
+        <section className={styles.flexContainer}>
+        <div className={styles.flexItem}>
+          {/* <Link to="/buy"> */}
+            <h1>BUY</h1>
+          {/* </Link> */}
+        </div>
+        <div className={styles.flexItem}>
+          {/* <Link to="/sell"> */}
+            <h1>SELL</h1>
+          {/* </Link> */}
+        </div>
+        <div className={styles.flexItem}>
+          {/* <Link to="/recycle"> */}
+            <h1>RECYCLE</h1>
+          {/* </Link> */}
+        </div>
+      </section>
     </div>
   )
 }
