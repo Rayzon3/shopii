@@ -3,8 +3,6 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-import image from '../../public/images/9btx63btWcuNzYE.png'
-
 const buy = () => {
   const [product, setProduct] = useState([])
   const [search, setSearch] = useState('')
