@@ -4,11 +4,18 @@ import React from 'react'
 import InputGroup from '../components/InputGroup'
 import { FormEvent, useState } from 'react'
 
+import { FileUploader } from 'react-drag-drop-files'
+
 export default function sellPage() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
   const [errors, setErrors] = useState<any>({})
+  const [file, setFile] = useState<any>(null)
+
+  const handleChange = (file) => {
+    setFile(file)
+  }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-dark py-2">
@@ -44,6 +51,7 @@ export default function sellPage() {
             errors={errors.price}
           />
         </div>
+        <FileUploader handleChange={handleChange} name="file" />
         <button className="mt-4 mb-4 w-full rounded-full bg-green py-2 text-sm font-bold text-midNight hover:bg-greenDarker">
           Put on sale!
         </button>
