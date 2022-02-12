@@ -51,7 +51,7 @@ const buy = () => {
       </div>
       <h1 className="mt-8 text-center text-4xl font-semibold text-white">
         {' '}
-        Our Products{' '}
+        Products{' '}
       </h1>
       <div className="mx-12 mt-8 grid grid-cols-4 gap-4">
         {product.map((prod) => (
@@ -69,7 +69,7 @@ const buy = () => {
               {prod.title}
             </h3>
             <p className="text-gray-900 mt-1 text-lg font-medium">
-              Price: {prod.price}
+              Price: ₹{prod.price}
             </p>
           </div>
         ))}

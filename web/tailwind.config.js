@@ -36,6 +36,7 @@ module.exports = {
       },
       fontFamily: {
         noto: "'Noto Sans', sans-serif",
+        pacifico: "'Pacifico', cursive;",
       },
     },
   },
